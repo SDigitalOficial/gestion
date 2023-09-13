@@ -1,0 +1,14 @@
+{
+    "name": "sitedigitaloficial//gestion",
+    "description": "Módulo gestión",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SiteDigital",
+            "email": "desarrollo@sitedigital.com.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
