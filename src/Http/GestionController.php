@@ -617,10 +617,12 @@ $usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::join('gestion_productos','g
 public function crearpropuesta($id){
  if(!$this->tenantName){
  $productos = Producto::all(); 
+ $motivos = Motivo::all(); 
  }else{
  $productos = \DigitalsiteSaaS\Gestion\Tenant\Producto::all(); 
+ $motivos = \DigitalsiteSaaS\Gestion\Tenant\Motivo::all(); 
  }
- return view('gestion::crear-propuesta')->with('productos', $productos);
+ return view('gestion::crear-propuesta')->with('productos', $productos)->with('motivos', $motivos);
 }
 
  public function crearpropuestanew() {

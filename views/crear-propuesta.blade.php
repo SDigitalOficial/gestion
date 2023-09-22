@@ -55,10 +55,10 @@
       </div>
     </div>
 
-        <div class="form-group">
+    <div class="form-group">
      <label class="col-md-3 control-label" for="example-text-input">Motivo Perdida</label>
       <div class="col-md-9">
-       <div id="output"></div>
+       
         <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos">
           <option value="" selected>Seleccione motivo de perdida</option>
          @foreach($motivos as $motivo)
@@ -67,6 +67,7 @@
         </select>
        </div>
       </div>
+
     <!--
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Valor Propuesta</label>
