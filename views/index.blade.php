@@ -29,6 +29,9 @@
    <li>
    <a href="/gestion/comercial/motivos"><i class="fa fa-file-o"></i>Motivo</a>
   </li>
+  <li>
+   <a href="/gestion/comercial/configuracion/1"><i class="fa fa-file-o"></i>Configuración</a>
+  </li>
  </ul>
 </div>
 
