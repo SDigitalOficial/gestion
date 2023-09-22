@@ -639,6 +639,7 @@ public function crearpropuesta($id){
   $gestion->observaciones = Input::get('comentarios');
   $gestion->referido_id = Input::get('utm_referido');
   $gestion->gestion_usuario_id = Input::get('cliente');
+  $gestion->motivo_id = Input::get('motivos');
   $gestion->save();
   return Redirect('/gestion/comercial')->with('status', 'ok_create');
  }
