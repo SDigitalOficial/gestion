@@ -12,35 +12,34 @@
 
   @section('ContenidoSite-01')
 
-  <div class="content-header">
-       <ul class="nav-horizontal text-center">
-      <li> 
-       <a href="/gestor/ver-templates"><i class="fa fa-desktop"></i> Ver templates</a>
-      </li>
-      <li>
-       <a href="/gestion/logo-head"><i class="fa fa-arrow-circle-up"></i> Logo encabezado</a>
-      </li>
-      <li>
-       <a href="/gestion/logo-footer"><i class="fa fa-arrow-circle-down"></i> Logo pie página</a>
-      </li>
-      <li>
-       <a href="/gestion/configurar-correo"><i class="fa fa-envelope"></i> Configurar correo</a>
-      </li>
-         <li>
-       <a href="/gestion/redes-sociales"><i class="hi hi-bullhorn"></i> Redes sociales</a>
-      </li>
-      </li>
-         <li class="active">
-       <a href="/gestion/ubicacion"><i class="gi gi-google_maps"></i> Ubicación</a>
-      </li>
-      @if(Auth::user()->id == 1)
-      <li>
-       <a href="/gestion/venta"><i class="gi gi-usd"></i> Ventas</a>
-      </li>
-      @else
-      @endif
-     </ul>
-    </div>
+<div class="content-header">
+ <ul class="nav-horizontal text-center">
+  <li class="active">
+   <a href="/gestion/comercial"><i class="fa fa-list-ul"></i> Usuarios</a>
+  </li>
+  <li>
+   <a href="/gestion/comercial/registro"><i class="fa fa-user-plus"></i> Registrar Datos Usuario</a>
+  </li>
+  <li>
+   <a href="/gestion/comercial/productos"><i class="fa fa-file-o"></i>Productos & Servicios</a>
+  </li>
+  <li>
+   <a href="/gestion/comercial/sectores"><i class="fa fa-file-o"></i>Sectores</a>
+  </li>
+  <li>
+   <a href="/gestion/comercial/referidos"><i class="fa fa-file-o"></i>Referidos</a>
+  </li>
+   <li>
+   <a href="/gestion/comercial/cantidades"><i class="fa fa-file-o"></i>Cantidades</a>
+  </li>
+   <li>
+   <a href="/gestion/comercial/motivos"><i class="fa fa-file-o"></i>Motivo</a>
+  </li>
+  <li>
+   <a href="/gestion/comercial/configuracion/1"><i class="fa fa-file-o"></i>Configuración</a>
+  </li>
+ </ul>
+</div>
 
  <div class="container">
   <?php $status=Session::get('status'); ?>
@@ -83,7 +82,7 @@
                                         <div class="block-options pull-right">
                                             
                                         </div>
-                                        <h2><strong>Crear</strong> Whatsapp</h2>
+                                        <h2><strong>Configuración</strong> Empresa</h2>
                                     </div>
                                     <!-- END Form Elements Title -->
                 
@@ -96,9 +95,6 @@
 
                                        @foreach($configuracion as $configuracion)
 
-
-                                      <h6><b>Datos Generales</b></h6>
-                                       <hr>
                                        <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-text-input">Empresa</label>
                                             <div class="col-md-9">
