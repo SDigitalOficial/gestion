@@ -1,10 +1,10 @@
 @extends ('adminsite.layout')
 
 @section('cabecera')
-    @parent
-      {{ Html::style('modulo-calendario/css/bootstrap-datetimepicker.min.css') }}
-     {{ Html::style('//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css') }}
-    @stop
+ @parent
+  {{ Html::style('modulo-calendario/css/bootstrap-datetimepicker.min.css') }}
+  {{ Html::style('//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css') }}
+ @stop
 
 
 @section('ContenidoSite-01')
@@ -70,10 +70,18 @@
        </div>
       </div>
 
+<!--
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Valor Propuesta</label>
        <div class="col-md-9">
         {{Form::text('valor',$propuesta->valor_propuesta, array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
+       </div>
+    </div>
+-->
+    <div class="form-group">
+     <label class="col-md-3 control-label" for="example-email-input">Asunto</label>
+       <div class="col-md-9">
+        {{Form::text('asunto',$propuesta->asunto, array('class' => 'form-control','placeholder'=>'Ingrese asunto','value'=>'0'))}}
        </div>
     </div>
 
@@ -84,7 +92,7 @@
        </div>
     </div>
       
-                    
+      <!--              
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-text-input">Producto de intéres</label>
       <div class="col-md-9">
@@ -102,14 +110,14 @@
         </select>
        </div>
       </div>
+  -->
 
-
-    <div class="form-group">
-     <label class="col-md-3 control-label" for="example-password-input">Comentarios</label>
+     <div class="form-group">
+     <label class="col-md-3 control-label" for="example-text-input">Comentarios</label>
       <div class="col-md-9">
-       {{Form::textarea('comentarios', $propuesta->observaciones, array('class' => 'form-control','placeholder'=>'Ingrese comentarios'))}}
+       {{Form::textarea('comentarios', $propuesta->observaciones, array('class' => 'ckeditor','id' => 'editor','placeholder'=>'Ingrese contenido'))}}
       </div>
-    </div>
+     </div>
 
 {{Form::hidden('cliente', Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
 
@@ -219,4 +227,10 @@ $(".chosen-select").chosen();
       });
    </script>   
 </footer>
+
+<script src="https://cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+
+<script>
+  CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+</script>
 @stop

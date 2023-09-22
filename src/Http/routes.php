@@ -8,6 +8,8 @@ Route::get('gestion/crear-pais', function(){
 Route::post('gestion/crearpais', 'DigitalsiteSaaS\Pagina\Http\ConfiguracionController@crearpais'); 
 Route::post('gestion/actualizarpais', 'DigitalsiteSaaS\Pagina\Http\ConfiguracionController@crearpais'); 
 
+Route::get('gestion/comercial/configuracion/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@configuracion');
+
 Route::get('gestion/comercial/registro', 'DigitalsiteSaaS\Gestion\Http\GestionController@registro');
 Route::get('gestion/comercial/propuesta/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@propuesta');
 Route::get('gestion/comercial/crear-propuesta/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearpropuesta');
@@ -15,15 +17,18 @@ Route::post('gestion/comercial/crearpropuesta', 'DigitalsiteSaaS\Gestion\Http\Ge
 Route::get('gestion/comercial/dashboard', 'DigitalsiteSaaS\Gestion\Http\GestionController@dashboard');
 Route::get('gestion/comercial/editar-propuesta/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarpropuesta');
 Route::post('gestion/comercial/editarpropuesta/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarpropuestaa');
-
+Route::post('gestion/comercial/updatecon/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@updatecon');
 
 Route::get('gestion/comercial/editar/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@edito');
 
 Route::get('gestion/comercial/editar-cantidades/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarcan');
 Route::get('gestion/comercial/editar-motivos/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarmot');
+Route::get('gestion/comercial/editar-funels/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarfunel');
+Route::get('gestion/comercial/crear-producto/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearproducto');
+Route::post('productos/createges', 'DigitalsiteSaaS\Gestion\Http\GestionController@creaproduct');
 
 Route::get('portafolio/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@portafolio');
-
+Route::get('gestion/comercial/editar-product/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarproduct');
 
 Route::get('gestion/comercial/editar-referido/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editreferido');
 
@@ -36,6 +41,7 @@ Route::get('gestion/comercial/editar-recepcion/{id}', 'DigitalsiteSaaS\Gestion\H
 
 Route::post('gestion/comercial/editarcantidad/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarcantidad');
 Route::post('gestion/comercial/editarmotivo/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarmotivo');
+Route::post('gestion/comercial/editarfunel/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarfunelsa');
 Route::post('gestion/comercial/editarreferido/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarreferido');
 Route::post('gestion/comercial/editarsector/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarsector');
 Route::post('gestion/comercial/editarproducto/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@editarproducto');
@@ -44,24 +50,29 @@ Route::post('gestion/comercial/editarusuario/{id}', 'DigitalsiteSaaS\Gestion\Htt
 Route::resource('gestion/comercial/editar-usuario', 'DigitalsiteSaaS\Gestion\Http\GestionController@edit');
 Route::get('gestion/comercial/eliminar/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminar');
 Route::get('gestion/comercial/eliminar-producto/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarproducto');
+Route::get('gestion/comercial/eliminar-productopro/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarproductopro');
 Route::get('gestion/comercial/eliminar-sector/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarsector');
 Route::get('gestion/comercial/eliminar-referido/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarreferido');
 Route::get('gestion/comercial/eliminar-cantidades/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarcantidad');
+Route::get('gestion/comercial/eliminar-funels/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@eliminarfunel');
 Route::get('gestion/comercial/productos', 'DigitalsiteSaaS\Gestion\Http\GestionController@productos');
 Route::get('gestion/comercial/crear-producto', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearproductos');
 Route::get('gestion/comercial/crear-sector', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearsector');
 Route::get('gestion/comercial/crear-referido', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearreferido');
 Route::get('gestion/comercial/crear-cantidad', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearcantidad');
 Route::get('gestion/comercial/crear-motivo', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearmotivo');
+Route::get('gestion/comercial/crear-funel', 'DigitalsiteSaaS\Gestion\Http\GestionController@crearfunel');
 Route::post('gestion/registrar/sector', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarsector');
 Route::post('gestion/registrar/referido', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarreferido');
 
 Route::post('gestion/registrar/producto', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarproductos');
 Route::post('gestion/registrar/cantidad', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarcantidad');
 Route::post('gestion/registrar/motivo', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarmotivo');
+Route::post('gestion/registrar/funel', 'DigitalsiteSaaS\Gestion\Http\GestionController@registrarfunel');
 Route::get('gestion/comercial/sectores', 'DigitalsiteSaaS\Gestion\Http\GestionController@sectores');
 Route::get('gestion/comercial/cantidades', 'DigitalsiteSaaS\Gestion\Http\GestionController@cantidades');
 Route::get('gestion/comercial/motivos', 'DigitalsiteSaaS\Gestion\Http\GestionController@motivos');
+Route::get('gestion/comercial/funel', 'DigitalsiteSaaS\Gestion\Http\GestionController@funel');
 Route::get('gestion/comercial/referidos', 'DigitalsiteSaaS\Gestion\Http\GestionController@referidos');
 Route::post('gestion/registrar/usuario', 'DigitalsiteSaaS\Gestion\Http\GestionController@create');
 Route::resource('gestion/comercial', 'DigitalsiteSaaS\Gestion\Http\GestionController');
@@ -69,7 +80,7 @@ Route::resource('gestion/comercial', 'DigitalsiteSaaS\Gestion\Http\GestionContro
 
 
 Route::get('/validacion/nit', 'DigitalsiteSaaS\Gestion\Http\GestionController@valida');
-
+Route::post('productos/updatepro/{id}', 'DigitalsiteSaaS\Gestion\Http\GestionController@proupdate');
 
 Route::group(['middleware' => ['auths','recepcion']], function (){
 Route::get('gestion/comercial-recepcion', 'DigitalsiteSaaS\Gestion\Http\GestionController@recepcion');

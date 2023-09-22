@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DigitalsiteSaaS\Gestion\Gestion;
 use DigitalsiteSaaS\Gestion\Producto;
+use DigitalsiteSaaS\Gestion\Product;
 use DigitalsiteSaaS\Gestion\Sector;
 use DigitalsiteSaaS\Gestion\Referido;
 use DigitalsiteSaaS\Gestion\Cantidad;
@@ -44,14 +45,16 @@ $hostname = app(\Hyn\Tenancy\Environment::class)->hostname();
   $sectores = Sector::all();
   $productos = Producto::all();
   $referidos = Referido::all();
+  $funels = Funel::all();
 }else{
   $usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::orderBy('created_at', 'desc')->get();
   $sectores = \DigitalsiteSaaS\Gestion\Tenant\Sector::all();
   $referidos = \DigitalsiteSaaS\Gestion\Tenant\Referido::all();
   $productos = \DigitalsiteSaaS\Gestion\Tenant\Producto::all();
+  $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::all();
 }
 
-  return view('gestion::index')->with('usuarios', $usuarios)->with('sectores', $sectores)->with('productos', $productos)->with('referidos', $referidos);
+  return view('gestion::index')->with('usuarios', $usuarios)->with('sectores', $sectores)->with('productos', $productos)->with('referidos', $referidos)->with('funels', $funels);
  }
 
 
@@ -131,6 +134,31 @@ public function editarusuario($id){
  }
 
 
+ public function  updatecon($id){
+  if(!$this->tenantName){
+  $gestion = Config::find($id);
+  }else{
+  $gestion = \DigitalsiteSaaS\Gestion\Tenant\Config::find($id); 
+  }
+  $gestion->empresa = Input::get('empresa');
+  $gestion->direccion = Input::get('direccion');
+  $gestion->telefono = Input::get('telefono');
+  $gestion->correo = Input::get('correo');
+  $gestion->website = Input::get('website');
+  $gestion->logo = Input::get('logo');
+  $gestion->img_01 = Input::get('imagen1');
+  $gestion->img_02 = Input::get('imagen2');
+  $gestion->presentacion = Input::get('presentacion');
+  $gestion->color_principal = Input:: get ('color_principal');
+  $gestion->color_secundario = Input:: get ('color_secundario');
+  $gestion->save();
+  return Redirect('/gestion/comercial/configuracion/1')->with('status', 'ok_update');
+ }
+
+
+
+
+
   public function createrecepcion() {
   if(!$this->tenantName){
   $gestion = new Gestion;
@@ -193,6 +221,18 @@ public function editarusuario($id){
   return Redirect('gestion/comercial/motivos')->with('status', 'ok_create');
  }
 
+   public function registrarfunel() {
+  if(!$this->tenantName){
+  $gestion = new Funel;
+  }else{
+  $gestion = new \DigitalsiteSaaS\Gestion\Tenant\Funel;  
+  }
+  $gestion->funel = Input::get('funel');
+  $gestion->color = Input::get('color');
+  $gestion->save();
+  return Redirect('gestion/comercial/funel')->with('status', 'ok_create');
+ }
+
 
 
 
@@ -223,6 +263,16 @@ public function editarusuario($id){
   return view('gestion::crear-sector');
  }
 
+  public function configuracion($id) {
+  if(!$this->tenantName){
+    $configuracion = Config::where('id','=',$id)->get();;
+    }else{
+    $configuracion = \DigitalsiteSaaS\Gestion\Tenant\Config::where('id','=',$id)->get();
+
+   }
+  return view('gestion::configuracion')->with('configuracion', $configuracion);
+ }
+
 public function crearreferido() {
   return view('gestion::crear-referido');
  }
@@ -234,6 +284,64 @@ public function crearreferido() {
   public function crearmotivo() {
   return view('gestion::crear-motivo');
  }
+
+  public function crearproducto($id) {
+   if(!$this->tenantName){
+    $productos = producto::where('propuesta_id','=',$id)->get();;
+    }else{
+    $productos = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id','=',$id)->get();
+
+   }
+  return view('gestion::crear-producto')->with('productos', $productos);
+ }
+
+
+   public function crearfunel() {
+  return view('gestion::crear-funel');
+ }
+
+
+
+
+ public function creaproduct() {
+  if(!$this->tenantName){
+  $gestion = new Product;
+  }else{
+  $gestion = new \DigitalsiteSaaS\Gestion\Tenant\Product;  
+  }
+  $gestion->iva = Input::get('iva');
+  $gestion->identificador = Input::get('identificador');
+  $gestion->precio = Input::get('precio');
+  $gestion->producto = Input::get('producto');
+  $gestion->descripcion = Input::get('descripcion');
+  $gestion->propuesta_id = Input::get('propuesta_id');
+  $gestion->valor_subtotal = $gestion->identificador*$gestion->precio;
+  $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
+  $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
+  $gestion->save();
+  return Redirect('gestion/comercial/crear-producto/'.$gestion->propuesta_id )->with('status', 'ok_create');
+ }
+
+
+ public function proupdate($id) {
+  if(!$this->tenantName){
+  $gestion = Product::find($id);
+  }else{
+  $gestion = \DigitalsiteSaaS\Gestion\Tenant\Product::find($id);
+  }
+  $gestion->iva = Input::get('iva');
+  $gestion->identificador = Input::get('identificador');
+  $gestion->precio = Input::get('precio');
+  $gestion->producto = Input::get('producto');
+  $gestion->descripcion = Input::get('descripcion');
+  $gestion->propuesta_id = Input::get('propuesta_id');
+  $gestion->valor_subtotal = $gestion->identificador*$gestion->precio;
+  $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
+  $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
+  $gestion->save();
+  return Redirect('gestion/comercial/crear-producto/'.$gestion->propuesta_id )->with('status', 'ok_create');
+ }
+
 
  public function productos(){
   if(!$this->tenantName){
@@ -269,6 +377,15 @@ public function crearreferido() {
   $motivos = \DigitalsiteSaaS\Gestion\Tenant\Motivo::all();
   }
   return view('gestion::motivos')->with('motivos', $motivos);
+ }
+
+  public function funel(){
+  if(!$this->tenantName){
+  $funels = Funel::all();
+  }else{
+  $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::all();
+  }
+  return view('gestion::funels')->with('funels', $funels);
  }
 
 
@@ -377,15 +494,17 @@ return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with
  $referidos = Referido::all();
  $cantidades = Cantidad::all();
  $paises = Pais::orderBy('pais', 'ASC')->get();
+ $funels = Funel::all();
 }else{
-$productos = \DigitalsiteSaaS\Gestion\Tenant\Producto::all();
+ $productos = \DigitalsiteSaaS\Gestion\Tenant\Producto::all();
  $sectores = \DigitalsiteSaaS\Gestion\Tenant\Sector::all();
  $referidos = \DigitalsiteSaaS\Gestion\Tenant\Referido::all();
  $cantidades = \DigitalsiteSaaS\Gestion\Tenant\Cantidad::all();
+ $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::all();
  $paises = \DigitalsiteSaaS\Carrito\Tenant\Pais::orderBy('pais', 'ASC')->get();
 
 }
- return view('gestion::registrar')->with('productos', $productos)->with('sectores', $sectores)->with('referidos', $referidos)->with('cantidades', $cantidades)->with('paises', $paises);
+ return view('gestion::registrar')->with('productos', $productos)->with('sectores', $sectores)->with('referidos', $referidos)->with('cantidades', $cantidades)->with('paises', $paises)->with('funels', $funels);
  }
 
 
@@ -424,6 +543,15 @@ $usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::join('gestion_productos','g
  $motivo = \DigitalsiteSaaS\Gestion\Tenant\Motivo::where('id', '=', $id)->get();
  }
  return view('gestion::editar-motivo')->with('motivo', $motivo);
+}
+
+ public function editarfunel($id){
+ if(!$this->tenantName){
+ $funels = Funel::where('id', '=', $id)->get();
+ }else{
+ $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::where('id', '=', $id)->get();
+ }
+ return view('gestion::editar-funel')->with('funels', $funels);
 }
 
  public function propuesta($id){
@@ -504,6 +632,7 @@ public function crearpropuesta($id){
   $gestion->estado_propuesta = Input::get('tipo');
   $gestion->valor_propuesta = Input::get('valor');
   $gestion->fecha_presentacion = Input::get('fecha');
+  $gestion->asunto = Input::get('asunto');
   $gestion->producto_servicio = Input::get('intereses');
   $gestion->observaciones = Input::get('comentarios');
   $gestion->referido_id = Input::get('utm_referido');
@@ -515,11 +644,18 @@ public function crearpropuesta($id){
  public function portafolio($id){
  if(!$this->tenantName){
  $empresa = Gestion::where('id','=',$id)->get();
+ $configuracion = Config::where('id','=', 1)->get();
+
  }else{
  $empresa = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::join('gestion_usuarios','gestion_usuarios.id', '=','gestion_propuestas.gestion_usuario_id')->where('gestion_propuestas.id','=',$id)->get();
+ $configuracion = \DigitalsiteSaaS\Gestion\Tenant\Config::where('id','=', 1)->get();
+ $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->get();
+ $subtotal = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_subtotal');
+ $iva = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_iva');
+
  }
 
- return view('gestion::portafolio', compact('empresa'));
+ return view('gestion::portafolio', compact('empresa','configuracion','propuesta','subtotal','iva'));
 }
 
 
@@ -571,13 +707,24 @@ public function valida(){
 }
 
 
+public function editarproduct($id){
+ if(!$this->tenantName){
+ $productos = Product::where('id', "=", $id)->get();
+ }else{
+ $productos = \DigitalsiteSaaS\Gestion\Tenant\Product::where('id', "=", $id)->get();
+ }
+ return view('gestion::editar_product')->with('productos', $productos);
+}
+
+
 
 public function editrecepcion($id){
  if(!$this->tenantName){
  $usuario = Gestion::join('gestion_cantidad', 'gestion_cantidad.id', '=', 'gestion_usuarios.cantidad_id')
- ->leftjoinjoin('gestion_referidos', 'gestion_referidos.id', '=', 'gestion_usuarios.referido_id')
- ->leftjoinjoin('gestion_sector', 'gestion_sector.id', '=', 'gestion_usuarios.sector_id')
- ->leftjoinjoin('gestion_productos', 'gestion_productos.id', '=', 'gestion_usuarios.interes')
+ ->leftjoin('gestion_referidos', 'gestion_referidos.id', '=', 'gestion_usuarios.referido_id')
+ ->leftjoin('gestion_sector', 'gestion_sector.id', '=', 'gestion_usuarios.sector_id')
+ ->leftjoin('gestion_productos', 'gestion_productos.id', '=', 'gestion_usuarios.interes')
+ ->leftjoin('gestion_funel', 'gestion_funel.id', '=', 'gestion_usuarios.tipo')
  ->leftjoin('paises', 'paises.id', '=', 'gestion_usuarios.pais_id')
  ->leftjoin('departamentos', 'departamentos.id', '=', 'gestion_usuarios.ciudad_id')
  ->where('gestion_usuarios.id', '=', $id)->get();
@@ -591,6 +738,8 @@ public function editrecepcion($id){
  $id_str = explode(',', $ideman);
  $productosa = Producto::whereIn('id', $id_str)->get();
  $productos = Producto::whereNotIn('id',$id_str)->get();
+ $funels = Funel::all();
+
  }
  }else{
  $usuario = \DigitalsiteSaaS\Gestion\Tenant\Gestion::join('gestion_cantidad', 'gestion_cantidad.id', '=', 'gestion_usuarios.cantidad_id')
@@ -598,11 +747,13 @@ public function editrecepcion($id){
  ->leftjoin('gestion_sector', 'gestion_sector.id', '=', 'gestion_usuarios.sector_id')
  ->leftjoin('gestion_productos', 'gestion_productos.id', '=', 'gestion_usuarios.interes')
  ->leftjoin('paises', 'paises.id', '=', 'gestion_usuarios.pais_id')
+ ->leftjoin('gestion_funel', 'gestion_funel.id', '=', 'gestion_usuarios.tipo')
  ->leftjoin('departamentos', 'departamentos.id', '=', 'gestion_usuarios.ciudad_id')
  ->where('gestion_usuarios.id', '=', $id)->get();
  $sectores = \DigitalsiteSaaS\Gestion\Tenant\Sector::all();
  $referidos = \DigitalsiteSaaS\Gestion\Tenant\Referido::all();
  $cantidades = \DigitalsiteSaaS\Gestion\Tenant\Cantidad::all();
+ $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::all();
  $paises = DB::table('paises')->orderBy('pais', 'ASC')->get();
  $intereses = \DigitalsiteSaaS\Gestion\Tenant\Gestion::where('id','=',$id)->get();
  foreach ($intereses as $interes){
@@ -612,7 +763,7 @@ public function editrecepcion($id){
  $productos = \DigitalsiteSaaS\Gestion\Tenant\Producto::whereNotIn('id',$id_str)->get();
  }
 }
- return view('gestion::editar-usuario')->with('usuario', $usuario)->with('productos', $productos)->with('productosa', $productosa)->with('sectores', $sectores)->with('id_str', $id_str)->with('referidos', $referidos)->with('cantidades', $cantidades)->with('paises', $paises);
+ return view('gestion::editar-usuario')->with('usuario', $usuario)->with('productos', $productos)->with('productosa', $productosa)->with('sectores', $sectores)->with('id_str', $id_str)->with('funels', $funels)->with('referidos', $referidos)->with('cantidades', $cantidades)->with('paises', $paises);
 }
 
 
@@ -690,6 +841,18 @@ public function editrecepcion($id){
   $gestion->motivo = Input::get('motivo');
   $gestion->save();
   return Redirect('/gestion/comercial/motivos')->with('status', 'ok_update');
+ }
+
+  public function editarfunelsa($id){
+  if(!$this->tenantName){
+  $gestion = Funel::find($id);
+  }else{
+  $gestion = \DigitalsiteSaaS\Gestion\Tenant\Funel::find($id);
+  }    
+  $gestion->funel = Input::get('funel');
+  $gestion->color = Input::get('color');
+  $gestion->save();
+  return Redirect('/gestion/comercial/funel')->with('status', 'ok_update');
  }
 
   public function editarpropuestaa($id){
@@ -790,6 +953,19 @@ public function editrecepcion($id){
   return Redirect('/gestion/comercial/productos')->with('status', 'ok_delete');
  }
 
+  public function eliminarproductopro($id){
+   if(!$this->tenantName){
+   $gestion = Product::find($id);
+   }else{
+  $gestion = \DigitalsiteSaaS\Gestion\Tenant\Product::find($id);
+
+   }
+
+   
+   $gestion->delete();
+  return Redirect('/gestion/comercial/crear-producto/'.$gestion->propuesta_id)->with('status', 'ok_delete');
+ }
+
  public function eliminarsector($id){
    if(!$this->tenantName){
    $gestion = Sector::find($id);
@@ -818,6 +994,16 @@ public function editrecepcion($id){
    }
    $gestion->delete();
   return Redirect('/gestion/comercial/cantidades')->with('status', 'ok_delete');
+ }
+
+  public function eliminarfunel($id){
+   if(!$this->tenantName){
+   $gestion = Funel::find($id);
+   }else{
+    $gestion = \DigitalsiteSaaS\Gestion\Tenant\Funel::find($id);
+   }
+   $gestion->delete();
+  return Redirect('/gestion/comercial/funel')->with('status', 'ok_delete');
  }
 
 }

@@ -54,11 +54,18 @@
       ], null, array('class' => 'form-control')) }}
       </div>
     </div>
-
+    <!--
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Valor Propuesta</label>
        <div class="col-md-9">
         {{Form::text('valor','', array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
+       </div>
+    </div>
+-->
+    <div class="form-group">
+     <label class="col-md-3 control-label" for="example-email-input">Asunto</label>
+       <div class="col-md-9">
+        {{Form::text('asunto', '', array('class' => 'form-control','placeholder'=>'Ingrese asunto','value'=>'0'))}}
        </div>
     </div>
 
@@ -68,7 +75,7 @@
         {{Form::text('fecha', Request::get('utm_fecha'), array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
        </div>
     </div>
-
+<!--
 
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-text-input">Producto de intéres</label>
@@ -81,18 +88,18 @@
        </select>
     </div>
      </div>
-
+-->
         {{Form::hidden('utm_referido',Request::get('utm_referido'), array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
 
 
     <div class="form-group">
-     <label class="col-md-3 control-label" for="example-password-input">Comentarios</label>
+     <label class="col-md-3 control-label" for="example-text-input">Comentarios</label>
       <div class="col-md-9">
-       {{Form::textarea('comentarios', '', array('class' => 'form-control','placeholder'=>'Ingrese comentarios'))}}
+       {{Form::textarea('comentarios', '', array('class' => 'ckeditor','id' => 'editor','placeholder'=>'Ingrese contenido'))}}
       </div>
-    </div>
+     </div>
 
-{{Form::hidden('cliente', Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
+    {{Form::hidden('cliente', Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
 
     <div class="form-group form-actions">
      <div class="col-md-9 col-md-offset-3">
@@ -199,4 +206,16 @@ $(".chosen-select").chosen();
       });
    </script> 
 </footer>
+
+<script src="https://cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+
+<script>
+  CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+</script>
 @stop
+
+
+
+
+
+

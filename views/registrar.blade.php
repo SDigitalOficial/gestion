@@ -44,16 +44,15 @@
     
     {{ Form::open(array('method' => 'POST','class' => 'form-horizontal','id' => 'defaultForm', 'url' => array('gestion/registrar/usuario'))) }}
 
+
     <div class="form-group">
-     <label class="col-md-3 control-label" for="example-text-input">Tipo usuario</label>
+     <label class="col-md-3 control-label" for="example-select">Tipo usuario</label>
       <div class="col-md-9">
-      {{ Form::select('tipo', [
-      '1' => 'Lead',
-      '2' => 'Prospecto',
-      '3' => 'Cliente',
-      '4' => 'Perdido',
-      '5' => 'Sin Oportunidad'
-      ], null, array('class' => 'form-control')) }}
+       <select name="tipo" id="inputConcepto" class="form-control" required>
+         @foreach($funels as $funels)
+          <option value="{{$funels->id}}">{{$funels->funel}}</option>
+         @endforeach
+       </select>
       </div>
     </div>
   
