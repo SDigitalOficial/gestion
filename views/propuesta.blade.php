@@ -106,7 +106,7 @@
        <a href="<?=URL::to('/gestion/comercial/crear-producto');?>/{{$propuesta->id}}"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Ver Portafolio" class="btn btn-info"><i class="fa fa-book sidebar-nav-icon"></i></span></a>
        
 
-       <a href="<?=URL::to('/portafolio/');?>/{{$propuesta->id}}"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Ver Portafolio" class="btn btn-warning"><i class="fa fa-book sidebar-nav-icon"></i></span></a>
+       <a href="<?=URL::to('/portafolio/');?>/{{$propuesta->id}}" target='_blank'><span  id="tip" data-toggle="tooltip" data-placement="top" title="Ver Portafolio" class="btn btn-warning"><i class="fa fa-book sidebar-nav-icon"></i></span></a>
 
      
 

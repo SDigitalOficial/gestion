@@ -95,7 +95,7 @@ body {
 
 	<section id="presentacion" size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<img src="{{$configuracion->logo}}">
+		<img src="/{{$configuracion->logo}}">
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="datos">
 		<h4><b>{{$configuracion->empresa}}</b></h4>
@@ -134,7 +134,7 @@ body {
 
 <section id="tablas"  size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<img src="{{$configuracion->logo}}">
+		<img src="/{{$configuracion->logo}}">
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="datos">
 		<h4><b>{{$configuracion->empresa}}</b></h4>
@@ -185,7 +185,7 @@ body {
 </section>
 <section  id="tablas" size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<img src="{{$configuracion->logo}}">
+		<img src="/{{$configuracion->logo}}">
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="datos">
 		<h4><b>{{$configuracion->empresa}}</b></h4>
@@ -230,7 +230,7 @@ body {
 
 <section id="condiciones" size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<img src="{{$configuracion->logo}}">
+		<img src="/{{$configuracion->logo}}">
 	</div>
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="datos">
 		<h4><b>{{$configuracion->empresa}}</b></h4>
