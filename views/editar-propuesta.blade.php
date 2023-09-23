@@ -61,7 +61,7 @@
      <label class="col-md-3 control-label" for="example-text-input">Motivo Perdida</label>
       <div class="col-md-9">
        <div id="output"></div>
-        <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos">
+        <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos" required>
           <option value="" selected>Seleccione motivo de perdida</option>
          @foreach($motivos as $motivo)
           <option value="{{$motivo->id}}">{{$motivo->motivo}}</option>
@@ -119,7 +119,7 @@
       </div>
      </div>
 
-{{Form::hidden('cliente', Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
+{{Form::hidden('cliente', $propuesta->gestion_usuario_id, array('class' => 'form-control','placeholder'=>'Ingrese valor de la propuesta','value'=>'0'))}}
 
     <div class="form-group form-actions">
      <div class="col-md-9 col-md-offset-3">

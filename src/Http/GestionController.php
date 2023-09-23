@@ -871,11 +871,12 @@ public function editrecepcion($id){
   $propuesta->estado_propuesta = Input::get('tipo');
   $propuesta->valor_propuesta = Input::get('valor');
   $propuesta->fecha_presentacion = Input::get('fecha');
+  $propuesta->asunto = Input::get('asunto');
   $propuesta->producto_servicio = $onlyconsonants;
   $propuesta->observaciones = Input::get('comentarios');
   $propuesta->gestion_usuario_id = Input::get('cliente');
   $propuesta->save();
-  return Redirect('gestion/comercial/propuesta/1')->with('status', 'ok_update');
+  return Redirect('gestion/comercial/propuesta/'.$propuesta->gestion_usuario_id)->with('status', 'ok_update');
  }
 
  public function editarreferido($id){

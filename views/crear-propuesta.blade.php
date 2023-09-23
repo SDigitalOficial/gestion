@@ -59,7 +59,7 @@
      <label class="col-md-3 control-label" for="example-text-input">Motivo Perdida</label>
       <div class="col-md-9">
        
-        <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos">
+        <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos" required>
           <option value="" selected>Seleccione motivo de perdida</option>
          @foreach($motivos as $motivo)
           <option value="{{$motivo->id}}">{{$motivo->motivo}}</option>
