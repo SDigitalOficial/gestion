@@ -183,6 +183,9 @@ body {
 
 
 </section>
+
+@if($empresa->tarifas == 2)
+@else
 <section  id="tablas" size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 		<img src="/{{$configuracion->logo}}">
@@ -227,7 +230,7 @@ body {
 	</tbody>
 </table>
 </section>
-
+@endif
 <section id="condiciones" size="A4">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 		<img src="/{{$configuracion->logo}}">

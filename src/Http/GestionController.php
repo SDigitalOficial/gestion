@@ -594,8 +594,11 @@ $usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::join('gestion_productos','g
  }
  }else{
  $motivos = \DigitalsiteSaaS\Gestion\Tenant\Motivo::all();
- $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::where('id','=',$id)
+
+
+  $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::leftjoin('gestion_motivo','gestion_propuestas.motivo_id','=','gestion_motivo.id')->where('gestion_propuestas.id','=',$id)
  ->get();
+
 
  foreach ($propuesta as $propuesta){
 
@@ -635,6 +638,7 @@ public function crearpropuesta($id){
   $gestion->valor_propuesta = Input::get('valor');
   $gestion->fecha_presentacion = Input::get('fecha');
   $gestion->asunto = Input::get('asunto');
+  $gestion->tarifas = Input::get('tarifas');
   $gestion->producto_servicio = Input::get('intereses');
   $gestion->observaciones = Input::get('comentarios');
   $gestion->referido_id = Input::get('utm_referido');
@@ -655,7 +659,6 @@ public function crearpropuesta($id){
  $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->get();
  $subtotal = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_subtotal');
  $iva = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_iva');
-
  }
 
  return view('gestion::portafolio', compact('empresa','configuracion','propuesta','subtotal','iva'));
@@ -871,10 +874,12 @@ public function editrecepcion($id){
   $propuesta->estado_propuesta = Input::get('tipo');
   $propuesta->valor_propuesta = Input::get('valor');
   $propuesta->fecha_presentacion = Input::get('fecha');
+  $propuesta->tarifas = Input::get('tarifas');
   $propuesta->asunto = Input::get('asunto');
   $propuesta->producto_servicio = $onlyconsonants;
   $propuesta->observaciones = Input::get('comentarios');
   $propuesta->gestion_usuario_id = Input::get('cliente');
+  $propuesta->motivo_id = Input::get('motivos');
   $propuesta->save();
   return Redirect('gestion/comercial/propuesta/'.$propuesta->gestion_usuario_id)->with('status', 'ok_update');
  }

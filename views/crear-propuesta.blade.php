@@ -76,6 +76,17 @@
        </div>
     </div>
 -->
+
+   <div class="form-group">
+     <label class="col-md-3 control-label" for="example-email-input">Visualización Tarifas</label>
+       <div class="col-md-9">
+         {{ Form::select('tarifas', [
+         '1' => 'Visible',
+         '2' => 'No Visible'
+      ], null, array('class' => 'form-control')) }}
+       </div>
+    </div>
+
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Asunto</label>
        <div class="col-md-9">

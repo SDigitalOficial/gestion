@@ -61,7 +61,7 @@
 
 <div class="container">
 
- <br>
+
  
  <div class="block full">
   <div class="block-title">
@@ -69,34 +69,33 @@
   </div>
             
   <div class="table-responsive">
-   <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
-    <thead>
-     <tr>
-      <th class="text-center">Nombres y Apellidos</th>
-      <th class="text-center">Empresa</th>
-      <th class="text-center">Estado</th>
-      <th class="text-center">Email</th>
-      <th class="text-center">Intéres</th>
-      <th class="text-center">Referido</th>
-      <th class="text-center">Creación</th>
-      <th class="text-center">Acciones</th>
-     </tr>
-    </thead>
+   
+<table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+ <thead>
+  <tr>
+   <th class="text-center">Nombres y Apellidos</th>
+   <th class="text-center">Empresa</th>
+   <th class="text-center">Estado</th>
+   <th class="text-center">Email</th>
+   <th class="text-center">Intéres</th>
+   <th class="text-center">Referido</th>
+   <th class="text-center">Creación</th>
+   <th class="text-center">Acciones</th>
+  </tr>
+ </thead>
     
-    <tbody>
-      @foreach($usuarios as $usuariosa)
-       
-      <tr>
-       <td class="text-center">{{$usuariosa->nombre}} {{$usuariosa->apellido}}</td>
-       
-       <td class="text-center">{{$usuariosa->empresa}}</td>
-       @foreach($funels as $funelsa)
-       @if($usuariosa->tipo == $funelsa->id)
-      <td><span class="badge" style="background:{{$funelsa->color}}">{{$funelsa->funel}} </span></td>
-       @endif
-`      @endforeach
+ <tbody>
+  @foreach($usuarios as $usuariosa)
+   <tr>
+   <td class="text-center">{{$usuariosa->nombre}} {{$usuariosa->apellido}}</td>
+   <td class="text-center">{{$usuariosa->empresa}}</td>
+    @foreach($funels as $funelsa)
+    @if($usuariosa->tipo == $funelsa->id)
+   <td><span class="badge" style="background:{{$funelsa->color}}">{{$funelsa->funel}} </span></td>
+    @endif
+   @endforeach
       
-       <td>{{$usuariosa->email}}</td>
+   <td>{{$usuariosa->email}}</td>
       
        @foreach($productos as $productosa)
        @if($usuariosa->interes == $productosa->id)

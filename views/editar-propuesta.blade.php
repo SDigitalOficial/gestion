@@ -62,7 +62,7 @@
       <div class="col-md-9">
        <div id="output"></div>
         <select data-placeholder="Seleccione" name="motivos" class="form-control" id="motivos" required>
-          <option value="" selected>Seleccione motivo de perdida</option>
+          <option value="{{$propuesta->motivo_id}}">{{$propuesta->motivo}}</option>
          @foreach($motivos as $motivo)
           <option value="{{$motivo->id}}">{{$motivo->motivo}}</option>
          @endforeach
@@ -78,6 +78,18 @@
        </div>
     </div>
 -->
+
+<div class="form-group">
+     <label class="col-md-3 control-label" for="example-email-input">Visualización Tarifas</label>
+       <div class="col-md-9">
+         {{ Form::select('tarifas', [$propuesta->tarifas => $propuesta->tarifas,
+         '1' => 'Visible',
+         '2' => 'No Visible'
+      ], null, array('class' => 'form-control')) }}
+       </div>
+    </div>
+
+
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Asunto</label>
        <div class="col-md-9">
