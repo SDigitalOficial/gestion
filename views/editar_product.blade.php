@@ -114,7 +114,7 @@
                                         </div>
                                        </div>
 
-                                        {{Form::hidden('propuesta_id',  Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+                                        {{Form::hidden('propuesta_id',  $productos->propuesta_id, array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
 
                                          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-group">
