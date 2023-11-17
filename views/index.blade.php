@@ -112,12 +112,12 @@
        <td>{{$usuariosa->created_at}}</td>
        <td class="text-center">
 
-        <a href="<?=URL::to('/gestion/comercial/propuesta');?>/{{$usuariosa->id}}?utm_referido={{$usuariosa->referido_id}}&utm_fecha={{$usuariosa->fecha}}"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Ver Porpuestas" class="btn btn-warning"><i class="fa fa-book sidebar-nav-icon"></i></span></a>
+        <a href="<?=URL::to('/gestion/comercial/propuesta');?>/{{$usuariosa->id}}?utm_referido={{$usuariosa->referido_id}}&utm_fecha={{$usuariosa->fecha}}"><span  id="tip" data-toggle="tooltip" data-placement="left" title="Ver Porpuestas" class="btn btn-warning"><i class="fa fa-book sidebar-nav-icon"></i></span></a>
 
          <a href="https://api.whatsapp.com/send?phone=+57{{$usuariosa->numero}}&text=¿Hola cómo estás? 🖐 Bienvenido a Unión Soluciones, Mi nombre es Samuel Martinez 👦, voy a asesorarte el día de hoy.
-¡Dime cómo puedo ayudarte!" target="_blank"><span  id="tip" data-toggle="tooltip" data-placement="right" title="Contactar por Whatsapp" class="btn btn-success"><i class="fa fa-whatsapp sidebar-nav-icon"></i></span></a>
+¡Dime cómo puedo ayudarte!" target="_blank"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Contactar por Whatsapp" class="btn btn-success"><i class="fa fa-whatsapp sidebar-nav-icon"></i></span></a>
 
-        <a href="<?=URL::to('gestion/comercial/editar-recepcion/');?>/{{$usuariosa->id}}"><span  id="tip" data-toggle="tooltip" data-placement="left" title="Editar registro" class="btn btn-primary"><i class="fa fa-pencil-square-o sidebar-nav-icon"></i></span></a>
+        <a href="<?=URL::to('gestion/comercial/editar-recepcion/');?>/{{$usuariosa->id}}"><span  id="tip" data-toggle="tooltip" data-placement="right" title="Editar registro" class="btn btn-primary"><i class="fa fa-pencil-square-o sidebar-nav-icon"></i></span></a>
 
 
 
@@ -126,7 +126,7 @@
 		    return confirm( mensaje );}
 	      </script>
 
-       <a href="<?=URL::to('gestion/comercial/eliminar');?>/{{$usuariosa->id}}" onclick="return confirmar('¿Está seguro que desea eliminar el registro?')"><span id="tup" data-toggle="tooltip" data-placement="top" title="Eliminar usuario" class="btn btn-danger" disabled="true"><i class="hi hi-trash sidebar-nav-icon"></i></span></a>
+       <a href="<?=URL::to('gestion/comercial/eliminar');?>/{{$usuariosa->id}}" onclick="return confirmar('¿Está seguro que desea eliminar el registro?')"><span id="tup" data-toggle="tooltip" data-placement="bottom" title="Eliminar usuario" class="btn btn-danger" disabled="true"><i class="hi hi-trash sidebar-nav-icon"></i></span></a>
       
 
       

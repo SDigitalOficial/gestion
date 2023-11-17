@@ -104,6 +104,7 @@
        </div>
     </div>
       
+      {{Form::hidden('identificador',$propuesta->identificador, array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
       <!--              
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-text-input">Producto de intéres</label>

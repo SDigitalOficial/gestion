@@ -639,6 +639,7 @@ public function crearpropuesta($id){
   $gestion->fecha_presentacion = Input::get('fecha');
   $gestion->asunto = Input::get('asunto');
   $gestion->tarifas = Input::get('tarifas');
+  $gestion->identificador = Str::random(12);
   $gestion->producto_servicio = Input::get('intereses');
   $gestion->observaciones = Input::get('comentarios');
   $gestion->referido_id = Input::get('utm_referido');
@@ -654,7 +655,7 @@ public function crearpropuesta($id){
  $configuracion = Config::where('id','=', 1)->get();
 
  }else{
- $empresa = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::join('gestion_usuarios','gestion_usuarios.id', '=','gestion_propuestas.gestion_usuario_id')->where('gestion_propuestas.id','=',$id)->get();
+ $empresa = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::join('gestion_usuarios','gestion_usuarios.id', '=','gestion_propuestas.gestion_usuario_id')->where('gestion_propuestas.identificador','=',$id)->get();
  $configuracion = \DigitalsiteSaaS\Gestion\Tenant\Config::where('id','=', 1)->get();
  $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->get();
  $subtotal = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_subtotal');
@@ -875,6 +876,7 @@ public function editrecepcion($id){
   $propuesta->valor_propuesta = Input::get('valor');
   $propuesta->fecha_presentacion = Input::get('fecha');
   $propuesta->tarifas = Input::get('tarifas');
+  $propuesta->identificador = Input::get('identificador');
   $propuesta->asunto = Input::get('asunto');
   $propuesta->producto_servicio = $onlyconsonants;
   $propuesta->observaciones = Input::get('comentarios');

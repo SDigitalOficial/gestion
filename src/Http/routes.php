@@ -76,6 +76,7 @@ Route::get('gestion/comercial/funel', 'DigitalsiteSaaS\Gestion\Http\GestionContr
 Route::get('gestion/comercial/referidos', 'DigitalsiteSaaS\Gestion\Http\GestionController@referidos');
 Route::post('gestion/registrar/usuario', 'DigitalsiteSaaS\Gestion\Http\GestionController@create');
 Route::resource('gestion/comercial', 'DigitalsiteSaaS\Gestion\Http\GestionController');
+Route::post('gestion/usuariorecepcion', 'DigitalsiteSaaS\Gestion\Http\GestionController@createrecepcion');
 });
 
 
@@ -94,7 +95,7 @@ Route::get('gestion/registro-recepcion', function(){
  return View::make('gestion::registro-recepcion')->with('productos', $productos)->with('sectores', $sectores)->with('referidos', $referidos)->with('cantidades', $cantidades)->with('paises', $paises);
 });
 
-Route::post('gestion/usuariorecepcion', 'DigitalsiteSaaS\Gestion\Http\GestionController@createrecepcion');
+
 
 Route::get('gestion/comercial/editar-registrorec/{id}', function($id){
  $usuario = DB::table('gestion_usuarios')
