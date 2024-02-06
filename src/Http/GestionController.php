@@ -11,6 +11,7 @@ use DigitalsiteSaaS\Gestion\Sector;
 use DigitalsiteSaaS\Gestion\Referido;
 use DigitalsiteSaaS\Gestion\Cantidad;
 use DigitalsiteSaaS\Gestion\Propuesta;
+use DigitalsiteSaaS\Gestion\Funel;
 use Input;
 use DB;
 use Illuminate\Support\Str;
