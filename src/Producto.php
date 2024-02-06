@@ -4,7 +4,7 @@ namespace DigitalsiteSaaS\Gestion;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Producto extends Model
 
 {
 
