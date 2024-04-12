@@ -87,7 +87,7 @@
  <tbody>
   @foreach($usuarios as $usuariosa)
    <tr>
-   <td class="text-center">{{$usuariosa->nombre}} {{$usuariosa->apellido}}</td>
+   <td class="text-center">x {{$usuariosa->apellido}}</td>
    <td class="text-center">{{$usuariosa->empresa}}</td>
     @foreach($funels as $funelsa)
     @if($usuariosa->tipo == $funelsa->id)
@@ -96,12 +96,16 @@
    @endforeach
       
    <td>{{$usuariosa->email}}</td>
+     
+       <td>
+        @foreach($interes as $interesa)
+        @if($usuariosa->interes == $interesa->id)
+        {{$interesa->page}}
+        @endif
+        @endforeach
+    </td>
+
       
-       @foreach($productos as $productosa)
-       @if($usuariosa->interes == $productosa->id)
-       <td>{{$productosa->producto}}</td>
-       @endif
-       @endforeach
 
        @foreach($referidos as $referidosa)
        @if($usuariosa->referido_id == $referidosa->id)

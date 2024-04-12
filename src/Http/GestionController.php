@@ -5,6 +5,7 @@ namespace DigitalsiteSaaS\Gestion\Http;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DigitalsiteSaaS\Gestion\Gestion;
+use DigitalsiteSaaS\Pagina\Page;
 use DigitalsiteSaaS\Gestion\Producto;
 use DigitalsiteSaaS\Gestion\Product;
 use DigitalsiteSaaS\Gestion\Sector;
@@ -49,7 +50,9 @@ $hostname = app(\Hyn\Tenancy\Environment::class)->hostname();
   $productos = Producto::all();
   $referidos = Referido::all();
   $funels = Funel::all();
+  $interes = Page::all();
 }else{
+  $interes = \DigitalsiteSaaS\Pagina\Tenant\Page::all();
   $usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::orderBy('created_at', 'desc')->get();
   $sectores = \DigitalsiteSaaS\Gestion\Tenant\Sector::all();
   $referidos = \DigitalsiteSaaS\Gestion\Tenant\Referido::all();
@@ -57,7 +60,7 @@ $hostname = app(\Hyn\Tenancy\Environment::class)->hostname();
   $funels = \DigitalsiteSaaS\Gestion\Tenant\Funel::all();
 }
 
-  return view('gestion::index')->with('usuarios', $usuarios)->with('sectores', $sectores)->with('productos', $productos)->with('referidos', $referidos)->with('funels', $funels);
+  return view('gestion::index')->with('usuarios', $usuarios)->with('sectores', $sectores)->with('productos', $productos)->with('referidos', $referidos)->with('funels', $funels)->with('interes', $interes);
  }
 
 
