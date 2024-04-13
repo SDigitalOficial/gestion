@@ -87,7 +87,7 @@
  <tbody>
   @foreach($usuarios as $usuariosa)
    <tr>
-   <td class="text-center">x {{$usuariosa->apellido}}</td>
+   <td class="text-center">{{$usuariosa->nombre}} {{$usuariosa->apellido}}</td>
    <td class="text-center">{{$usuariosa->empresa}}</td>
     @foreach($funels as $funelsa)
     @if($usuariosa->tipo == $funelsa->id)
