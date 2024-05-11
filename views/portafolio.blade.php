@@ -161,7 +161,7 @@ body {
 			<td class="text-uppercase"><b>{{$propuesta->producto}}</b></td>
 			<td>{{$propuesta->descripcion}} </td>
 
-			<td class="text-center">{{$propuesta->identificador}} </td>
+			<td class="text-center">{{$propuesta->posti}} </td>
 			<td class="text-center">$ {{number_format($propuesta->precio,0, ",", ".")}}</td>
 			<td class="text-center">$ {{number_format($propuesta->valor_subtotal,0, ",", ".")}}</td>
 		</tr>

@@ -103,7 +103,7 @@
        <td class="text-center">
 
         
-       <a href="<?=URL::to('/gestion/comercial/crear-producto');?>/{{$propuesta->id}}"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Productos" class="btn btn-info"><i class="gi gi-tags sidebar-nav-icon"></i></span></a>
+       <a href="<?=URL::to('/gestion/comercial/crear-producto');?>/{{$propuesta->identificador}}?id={{$propuesta->id}}"><span  id="tip" data-toggle="tooltip" data-placement="top" title="Productos" class="btn btn-info"><i class="gi gi-tags sidebar-nav-icon"></i></span></a>
        
 
        <a href="<?=URL::to('/portafolio/');?>/{{$propuesta->identificador}}" target='_blank'><span  id="tip" data-toggle="tooltip" data-placement="bottom" title="Ver Propuesta" class="btn btn-warning"><i class="fa fa-book sidebar-nav-icon"></i></span></a>

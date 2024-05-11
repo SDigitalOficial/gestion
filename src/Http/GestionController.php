@@ -293,9 +293,9 @@ public function crearreferido() {
 
   public function crearproducto($id) {
    if(!$this->tenantName){
-    $productos = producto::where('propuesta_id','=',$id)->get();;
+    $productos = producto::where('identificador','=',$id)->get();;
     }else{
-    $productos = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id','=',$id)->get();
+    $productos = \DigitalsiteSaaS\Gestion\Tenant\Product::where('identificador','=',$id)->get();
 
    }
   return view('gestion::crear-producto')->with('productos', $productos);
@@ -317,15 +317,16 @@ public function crearreferido() {
   }
   $gestion->iva = Input::get('iva');
   $gestion->identificador = Input::get('identificador');
+  $gestion->posti = Input::get('cantidad');
   $gestion->precio = Input::get('precio');
   $gestion->producto = Input::get('producto');
   $gestion->descripcion = Input::get('descripcion');
-  $gestion->propuesta_id = Input::get('propuesta_id');
-  $gestion->valor_subtotal = $gestion->identificador*$gestion->precio;
+  $gestion->propuesta_id = Input::get('propuesta');
+  $gestion->valor_subtotal = $gestion->posti*$gestion->precio;
   $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
   $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
   $gestion->save();
-  return Redirect('gestion/comercial/crear-producto/'.$gestion->propuesta_id )->with('status', 'ok_create');
+  return Redirect('gestion/comercial/crear-producto/'.$gestion->identificador.'?id='.$gestion->propuesta_id)->with('status', 'ok_create');
  }
 
 
@@ -663,9 +664,9 @@ public function crearpropuesta($id){
  }else{
  $empresa = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::join('gestion_usuarios','gestion_usuarios.id', '=','gestion_propuestas.gestion_usuario_id')->where('gestion_propuestas.identificador','=',$id)->get();
  $configuracion = \DigitalsiteSaaS\Gestion\Tenant\Config::where('id','=', 1)->get();
- $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->get();
- $subtotal = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_subtotal');
- $iva = \DigitalsiteSaaS\Gestion\Tenant\Product::where('propuesta_id', '=', $id)->sum('valor_iva');
+ $propuesta = \DigitalsiteSaaS\Gestion\Tenant\Product::where('identificador', '=', $id)->get();
+ $subtotal = \DigitalsiteSaaS\Gestion\Tenant\Product::where('identificador', '=', $id)->sum('valor_subtotal');
+ $iva = \DigitalsiteSaaS\Gestion\Tenant\Product::where('identificador', '=', $id)->sum('valor_iva');
  }
 
  return view('gestion::portafolio', compact('empresa','configuracion','propuesta','subtotal','iva'));

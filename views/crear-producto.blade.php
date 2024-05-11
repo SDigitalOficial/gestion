@@ -106,7 +106,7 @@
                                          <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Cantidad</label>
-                                           {{Form::text('identificador', '', array('class' => 'form-control','placeholder'=>'Ingrese cantidad'))}}
+                                           {{Form::text('cantidad', '', array('class' => 'form-control','placeholder'=>'Ingrese cantidad'))}}
                                           </div>
                                         </div>
 
@@ -134,7 +134,9 @@
 
                                         </div>
 
-                                        {{Form::hidden('propuesta_id',  Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+                                        {{Form::hidden('identificador',  Request::segment(4), array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+
+                                        {{Form::hidden('propuesta',  Request::get('id'), array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
                                        <br>
                                       
                                         <div class="form-group form-actions">
@@ -168,9 +170,10 @@
                                         <tr>
                                             <th class="text-center">Producto</th>
                                             <th class="text-center">Descripción</th>
-                                            <th class="text-center">Iva</th>
+                                            
                                             <th>Valor</th>
-                                            <th>Identificador</th>
+                                            <th>Cantidad</th>
+                                            <th class="text-center">Iva</th>
                                             <th>Acciones</th> 
                                         </tr>
                                     </thead>
@@ -180,9 +183,9 @@
                                         <tr>
                                             <td class="text-center">{{$productos->producto}}</td>
                                             <td class="text-center">{{$productos->descripcion}}</td>
-                                            <td>{{$productos->iva}}</td>
                                             <td>{{$productos->precio}}</td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">{{$productos->posti}}</td>
+                                            <td>{{$productos->iva}}</td>
                                             <td class="text-center">
                                              <a href="<?=URL::to('gestion/comercial/editar-product/'.$productos->id);?>"><span  id="tip" data-toggle="tooltip" data-placement="left" title="Editar producto" class="btn btn-primary"><i class="fa fa-pencil-square-o sidebar-nav-icon"></i></span></a>
                                              <script language="JavaScript">
