@@ -248,8 +248,8 @@
                                     <tbody>
                                      @foreach($productos as $productos)
                                         <tr>
-                                           <td style="width:280px">{{$productos->producto}}</td>
-                                           <td style="width:100px">{{$productos->productos_sum}}</td>
+                                           <td style="width:280px">{{$productos->page}}</td>
+                                           <td style="width:100px">{{$productos->pages_sum}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -395,7 +395,7 @@
                                          @foreach($medios as $medios)
                                         <tr>
                                            <td style="width:280px">{{$medios->referido}}</td>
-                                           <td style="width:100px">$ {{number_format($medios->valor_propuesta,  0, ",", ".")}}</td>
+                                           <td style="width:100px">$ {{number_format($medios->precio,  0, ",", ".")}}</td>
                                         </tr>
                                       @endforeach
                                     </tbody>

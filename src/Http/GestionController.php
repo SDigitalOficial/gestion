@@ -437,11 +437,11 @@ $estado_usuario = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha',
 
 
 $productos = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))
-->leftjoin('gestion_productos','gestion_usuarios.interes','=','gestion_productos.id')
-->select('producto')
-->selectRaw('count(producto) as productos_sum')
-->groupBy('producto')
-->orderBy('productos_sum', 'desc')
+->leftjoin('pages','gestion_usuarios.interes','=','pages.id')
+->select('page')
+->selectRaw('count(page) as pages_sum')
+->groupBy('page')
+->orderBy('pages_sum', 'desc')
 ->get();
 
 $sectores = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))
@@ -452,7 +452,7 @@ $sectores = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array
 ->orderBy('sectores', 'desc')
 ->get();
 
-$referidos = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))->leftjoin('gestion_referidos','gestion_usuarios.sector_id','=','gestion_referidos.id')
+$referidos = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))->leftjoin('gestion_referidos','gestion_usuarios.referido_id','=','gestion_referidos.id')
 ->select('referidos')
 ->selectRaw('count(referidos) as referidos_sum')
 ->groupBy('referidos')
@@ -483,12 +483,12 @@ $total_usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha',
 
 
 $medios = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))->leftjoin('gestion_referidos','gestion_referidos.id','=','gestion_propuestas.referido_id')
-
-->select(DB::raw('sum(valor_propuesta) as valor_propuesta'),
-DB::raw('referidos as referido'))
-->orderBy('valor_propuesta', 'desc')
-->groupBy('gestion_referidos.id')
-->get();
+  ->leftjoin('gestion_products','gestion_products.propuesta_id','=','gestion_propuestas.id')
+  ->select(DB::raw('sum(precio) as precio'),
+  DB::raw('referidos as referido'))
+  ->orderBy('valor_propuesta', 'desc')
+  ->groupBy('gestion_referidos.id')
+  ->get();
 
 
 return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with('estado_usuario', $estado_usuario)->with('productos', $productos)->with('referidos', $referidos)->with('ciudades', $ciudades)->with('total_propuestas', $total_propuestas)->with('total_proceso', $total_proceso)->with('total_ganadas', $total_ganadas)->with('cantidades', $cantidades)->with('medios', $medios);
