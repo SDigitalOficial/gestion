@@ -338,15 +338,16 @@ public function crearreferido() {
   }
   $gestion->iva = Input::get('iva');
   $gestion->identificador = Input::get('identificador');
+  $gestion->posti = Input::get('cantidad');
   $gestion->precio = Input::get('precio');
   $gestion->producto = Input::get('producto');
   $gestion->descripcion = Input::get('descripcion');
   $gestion->propuesta_id = Input::get('propuesta_id');
-  $gestion->valor_subtotal = $gestion->identificador*$gestion->precio;
+  $gestion->valor_subtotal = $gestion->posti*$gestion->precio;
   $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
   $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
   $gestion->save();
-  return Redirect('gestion/comercial/crear-producto/'.$gestion->propuesta_id )->with('status', 'ok_create');
+  return Redirect('gestion/comercial/crear-producto/'.$gestion->identificador.'?id='.$gestion->propuesta_id)->with('status', 'ok_create');
  }
 
 

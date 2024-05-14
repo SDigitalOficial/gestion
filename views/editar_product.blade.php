@@ -109,10 +109,11 @@
                                         <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Cantidad</label>
-                                           {{Form::text('identificador', $productos->identificador, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto' ))}}
+                                           {{Form::text('cantidad', $productos->posti, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto' ))}}
                                           </div>
                                         </div>
                                        </div>
+                                       {{Form::hidden('identificador',  $productos->identificador, array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
 
                                         {{Form::hidden('propuesta_id',  $productos->propuesta_id, array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
 
