@@ -121,7 +121,7 @@
                                         <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Descripción</label>
-                                           {{Form::text('descripcion', $productos->descripcion, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto','class' => 'ckeditor','id' => 'editor' ))}}
+                                           {{Form::textarea('descripcion', $productos->descripcion, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto','class' => 'ckeditor','id' => 'editor' ))}}
                                           </div>
                                         </div>
                                        </div>
@@ -272,6 +272,4 @@ $(document).ready(function() {
 <script>
   CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 </script>
-
-
   @stop

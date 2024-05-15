@@ -128,7 +128,7 @@
                                          <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Descripción</label>
-                                           {{Form::text('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción','class' => 'ckeditor','id' => 'editor'))}}
+                                           {{Form::textarea('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción','class' => 'ckeditor','id' => 'editor'))}}
                                           </div>
                                         </div>
 
@@ -182,7 +182,7 @@
                                        @foreach($productos as $productos)
                                         <tr>
                                             <td class="text-center">{{$productos->producto}}</td>
-                                            <td class="text-center">{{$productos->descripcion}}</td>
+                                            <td class="text-center">{!!$productos->descripcion!!}</td>
                                             <td>{{$productos->precio}}</td>
                                             <td class="text-center">{{$productos->posti}}</td>
                                             <td>{{$productos->iva}}</td>
