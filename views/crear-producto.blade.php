@@ -128,7 +128,7 @@
                                          <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Descripción</label>
-                                           {{Form::text('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+                                           {{Form::text('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción','class' => 'ckeditor','id' => 'editor'))}}
                                           </div>
                                         </div>
 
@@ -313,6 +313,26 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('button-image').addEventListener('click', (event) => {
+      event.preventDefault();
+      window.open('/file-manager/fm-button', 'fm', 'width=900,height=500');
+    });
+  });
+  // set file link
+  function fmSetLink($url) {
+    document.getElementById('image_label').value = $url;
+  }
+</script>
+
+
+<script src="https://cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+
+<script>
+  CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 </script>
 
   @stop

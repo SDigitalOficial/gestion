@@ -67,7 +67,7 @@ $hostname = app(\Hyn\Tenancy\Environment::class)->hostname();
  public function create() {
   $interes = Input::get('interes');
   if(Input::get('fecha') == ''){
-  $fecha = date('m/d/Y H:i');
+  $fecha = date('Y-m-d');
   $mes_lead = date('M', strtotime($fecha));
   }else{
   $fecha = Input::get('fecha');
@@ -118,7 +118,7 @@ public function editarusuario($id){
   $gestion = \DigitalsiteSaaS\Gestion\Tenant\Gestion::find($id); 
   }
   $gestion->tipo = Input::get('tipo');
-  $gestion->fecha = Input::get('fecha');
+  $gestion->fecha = date('Y-m-d', strtotime(Input::get('fecha')));
   $gestion->valor = Input::get('valor');
   $gestion->nombre = Input::get('nombre');
   $gestion->apellido = Input::get('apellido');
@@ -292,8 +292,9 @@ public function crearreferido() {
  }
 
   public function crearproducto($id) {
+
    if(!$this->tenantName){
-    $productos = producto::where('identificador','=',$id)->get();;
+    $productos = Product::where('identificador','=',$id)->get();;
     }else{
     $productos = \DigitalsiteSaaS\Gestion\Tenant\Product::where('identificador','=',$id)->get();
 
@@ -415,11 +416,10 @@ public function crearreferido() {
  $min_price = Input::has('min_price') ? Input::get('min_price') : 0;
  $max_price = Input::has('max_price') ? Input::get('max_price') : 100000;
 
-$datoa = date('m/d/Y H:i', strtotime($min_price));
-$datob = date('m/d/Y H:i', strtotime($max_price));
+$datoa = date('Y-m-d', strtotime($min_price));
+$datob = date('Y-m-d', strtotime($max_price));
 
-
-$total_usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))->count();
+$total_usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::WhereBetween('fecha', array($datoa, $datob))->count();
 
 $total_propuestas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
 ->sum('valor_propuesta');

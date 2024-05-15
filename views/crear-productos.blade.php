@@ -70,4 +70,5 @@
   {{ Html::script('modulo-gestion/validaciones/crear-recursos.js') }}
  {{ Html::script('//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js') }} 
 </footer>
+
 @stop
