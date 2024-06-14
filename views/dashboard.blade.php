@@ -135,42 +135,15 @@
                                         <div class="row text-center">
                                             
                                             @foreach($estado_usuario as $estado_usuario)
-                                            @if($estado_usuario->tipo == '1')
+                                            
                                             <div class="col-xs-2 col-xs-offset-1">
-                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background: #2980b9;">
+                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background: {{$estado_usuario->color}};">
                                                     <i class="gi gi-thumbs_up"></i>
                                                 </a>
-                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>Leads</small></h3>
+                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>{{$estado_usuario->funel}}</small></h3>
                                             </div>
-                                            @elseif($estado_usuario->tipo == '2')
-                                            <div class="col-xs-2">
-                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background: #e67e22;">
-                                                    <i class="gi gi-thumbs_up"></i>
-                                                </a>
-                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>Prospectos nuevos</small></h3>
-                                            </div>
-                                            @elseif($estado_usuario->tipo == '3')
-                                            <div class="col-xs-2">
-                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background:#27ae60">
-                                                    <i class="gi gi-thumbs_up"></i>
-                                                </a>
-                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>Ganados</small></h3>
-                                            </div>
-                                             @elseif($estado_usuario->tipo == '4')
-                                            <div class="col-xs-2">
-                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background:#e74c3c">
-                                                    <i class="gi gi-thumbs_up"></i>
-                                                </a>
-                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>Perdidos</small></h3>
-                                            </div>
-                                            @elseif($estado_usuario->tipo == '5')
-                                            <div class="col-xs-2">
-                                                <a href="javascript:void(0)" class="widget-icon themed-background" style="background:#bbb">
-                                                    <i class="gi gi-thumbs_up"></i>
-                                                </a>
-                                                <h3 class="remove-margin-bottom"><strong>{{$estado_usuario->tipo_sum}}</strong><br><small>Sin Oportunidad</small></h3>
-                                            </div>
-                                            @endif
+                                            
+                                            
                                             @endforeach
                                         </div>
                                     </div>
@@ -213,7 +186,9 @@
                                                 <a href="javascript:void(0)" class="widget-icon themed-background">
                                                     <i class="gi gi-thumbs_up"></i>
                                                 </a>
-                                                <h3 class="remove-margin-bottom"><strong></strong><br><small>Ganados</small></h3>
+                                                <h3 class="remove-margin-bottom"><strong>
+                                                    
+                                                {{number_format($total_perdidas, 0, ",", ".")}}</strong><br><small>Propuestas Perdidad</small></h3>
                                             </div>
                                            
                                         </div>
@@ -411,7 +386,7 @@
  <div class="block">
                             <!-- Responsive Full Title -->
                             <div class="block-title">
-                                <h2><strong>Lenguajes</strong> visitas</h2>
+                                <h2><strong>Sectores</strong> visitas</h2>
                             </div>
                             <!-- END Responsive Full Title -->
 
@@ -421,15 +396,17 @@
                                 <table class="table table-vcenter table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-primary">Lenguaje</th>
+                                            <th class="text-primary">Sectores</th>
                                             <th class="text-primary"># Visitas</th>    
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
                                         <tr>
-                                           <td style="width:280px">Otro</td>
-                                           <td style="width:100px">5</td>
+                                           @foreach($sectores as $sectores)
+                                           <td style="width:280px">{{$sectores->sectores}}</td>
+                                           <td style="width:100px">{{$sectores->sectores_sum}}</td>
+                                           @endforeach 
                                         </tr>
                                        
                                     </tbody>

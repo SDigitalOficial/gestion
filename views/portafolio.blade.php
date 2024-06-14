@@ -118,7 +118,7 @@ body {
 <br><br>
 <h5> <b>Respetados señores,</b></h5>
 <br>
-<p class="text-justify">{{$configuracion->presentacion}}</p>
+<p class="text-justify">{!!$empresa->presentacion!!}</p>
 
 <br><br>
 <h5>Atento saludo,</h5>
@@ -158,17 +158,17 @@ body {
 		</tr>
 		@foreach($propuesta as $propuesta)
 		<tr>
-			<td class="text-uppercase"><b>{{$propuesta->producto}}</b></td>
-			<td>{!!$propuesta->descripcion!!} </td>
+			<td class="text-uppercase" style="font-size: 9px"><b>{{$propuesta->producto}}</b></td>
+			<td style="width:260px">{!!$propuesta->descripcion!!} </td>
 
-			<td class="text-center">{{$propuesta->posti}} </td>
-			<td class="text-center">$ {{number_format($propuesta->precio,0, ",", ".")}}</td>
-			<td class="text-center">$ {{number_format($propuesta->valor_subtotal,0, ",", ".")}}</td>
+			<td class="text-center" style="font-size: 9px">{{$propuesta->posti}} </td>
+			<td class="text-center" style="font-size: 9px">$ {{number_format($propuesta->precio,0, ",", ".")}}</td>
+			<td class="text-center" style="font-size: 9px">$ {{number_format($propuesta->valor_subtotal,0, ",", ".")}}</td>
 		</tr>
 		@endforeach
 		<tr bgcolor="#E8E8E8">
-			<td colspan="4" class="text-right" style="padding: 15px">Subtotal</td>
-			<td class="text-center"><b>$ {{number_format($subtotal,0, ",", ".")}}</b></td>
+			<td colspan="4" class="text-right" style="padding: 15px;font-size: 9px">Subtotal</td>
+			<td class="text-center" style="font-size: 9px"><b>$ {{number_format($subtotal,0, ",", ".")}}</b></td>
 		</tr>
 		<tr>
 			<td colspan="4" class="text-right" style="padding: 15px">I.V.A</td>

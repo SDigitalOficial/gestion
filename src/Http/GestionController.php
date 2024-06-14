@@ -67,10 +67,10 @@ $hostname = app(\Hyn\Tenancy\Environment::class)->hostname();
  public function create() {
   $interes = Input::get('interes');
   if(Input::get('fecha') == ''){
-  $fecha = date('Y-m-d');
+  $fecha = date('Y-m-d', strtotime(Input::get('fecha')));
   $mes_lead = date('M', strtotime($fecha));
   }else{
-  $fecha = Input::get('fecha');
+  $fecha = date('Y-m-d', strtotime(Input::get('fecha')));
   $mes_lead = date('M', strtotime($fecha));
   }
   $data = json_encode($interes, true);
@@ -421,17 +421,26 @@ $datob = date('Y-m-d', strtotime($max_price));
 
 $total_usuarios = \DigitalsiteSaaS\Gestion\Tenant\Gestion::WhereBetween('fecha', array($datoa, $datob))->count();
 
-$total_propuestas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
-->sum('valor_propuesta');
+$total_propuestas = \DigitalsiteSaaS\Gestion\Tenant\Product::all()
+->sum('precio');
+
 
 $total_proceso = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
-->where('estado_propuesta','=','1')->sum('valor_propuesta');
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','1')->sum('precio');
+
+$total_perdidas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','2')->sum('precio');
+
 
 $total_ganadas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
-->where('estado_propuesta','=','3')->sum('valor_propuesta');
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','3')->sum('precio');
 
 $estado_usuario = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))
-->select('tipo')
+->leftjoin('gestion_funel','gestion_usuarios.tipo','=','gestion_funel.id')
+->select('tipo','funel','color')
 ->selectRaw('count(tipo) as tipo_sum')
 ->groupBy('tipo')
 ->get();
@@ -492,7 +501,7 @@ $medios = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_present
   ->get();
 
 
-return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with('estado_usuario', $estado_usuario)->with('productos', $productos)->with('referidos', $referidos)->with('ciudades', $ciudades)->with('total_propuestas', $total_propuestas)->with('total_proceso', $total_proceso)->with('total_ganadas', $total_ganadas)->with('cantidades', $cantidades)->with('medios', $medios);
+return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with('total_perdidas', $total_perdidas)->with('estado_usuario', $estado_usuario)->with('productos', $productos)->with('referidos', $referidos)->with('ciudades', $ciudades)->with('total_propuestas', $total_propuestas)->with('total_proceso', $total_proceso)->with('total_ganadas', $total_ganadas)->with('cantidades', $cantidades)->with('medios', $medios)->with('sectores', $sectores);
  }
 
  public function registro(){
@@ -646,6 +655,7 @@ public function crearpropuesta($id){
   $gestion->valor_propuesta = Input::get('valor');
   $gestion->fecha_presentacion = Input::get('fecha');
   $gestion->asunto = Input::get('asunto');
+  $gestion->presentacion = Input::get('presentacion');
   $gestion->tarifas = Input::get('tarifas');
   $gestion->identificador = Str::random(12);
   $gestion->producto_servicio = Input::get('intereses');
@@ -886,6 +896,7 @@ public function editrecepcion($id){
   $propuesta->tarifas = Input::get('tarifas');
   $propuesta->identificador = Input::get('identificador');
   $propuesta->asunto = Input::get('asunto');
+  $propuesta->presentacion = Input::get('presentacion');
   $propuesta->producto_servicio = $onlyconsonants;
   $propuesta->observaciones = Input::get('comentarios');
   $propuesta->gestion_usuario_id = Input::get('cliente');

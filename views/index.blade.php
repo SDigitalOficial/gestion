@@ -9,28 +9,31 @@
 <div class="content-header">
  <ul class="nav-horizontal text-center">
   <li class="active">
-   <a href="/gestion/comercial"><i class="fa fa-list-ul"></i> Usuarios</a>
+   <a href="/gestion/comercial"><i class="fa fa-users"></i> Usuarios</a>
   </li>
   <li>
    <a href="/gestion/comercial/registro"><i class="fa fa-user-plus"></i> Registrar Datos Usuario</a>
   </li>
   <li>
-   <a href="/gestion/comercial/productos"><i class="fa fa-file-o"></i>Productos & Servicios</a>
+   <a href="/gestion/comercial/productos"><i class="gi gi-cart_in"></i>Productos & Servicios</a>
   </li>
   <li>
-   <a href="/gestion/comercial/sectores"><i class="fa fa-file-o"></i>Sectores</a>
+   <a href="/gestion/comercial/sectores"><i class="fa fa-map-pin"></i>Sectores</a>
   </li>
   <li>
-   <a href="/gestion/comercial/referidos"><i class="fa fa-file-o"></i>Referidos</a>
+   <a href="/gestion/comercial/referidos"><i class="fa fa-hand-pointer-o"></i>Referidos</a>
   </li>
    <li>
-   <a href="/gestion/comercial/cantidades"><i class="fa fa-file-o"></i>Cantidades</a>
+   <a href="/gestion/comercial/cantidades"><i class="gi gi-calculator"></i>Cantidades</a>
   </li>
    <li>
-   <a href="/gestion/comercial/motivos"><i class="fa fa-file-o"></i>Motivo</a>
+   <a href="/gestion/comercial/motivos"><i class="gi gi-list"></i>Motivo</a>
+  </li>
+   <li>
+   <a href="/gestion/comercial/funel"><i class="hi hi-filter"></i>Funel</a>
   </li>
   <li>
-   <a href="/gestion/comercial/configuracion/1"><i class="fa fa-file-o"></i>Configuración</a>
+   <a href="/gestion/comercial/configuracion/1"><i class="gi gi-cogwheel"></i>Configuración</a>
   </li>
  </ul>
 </div>

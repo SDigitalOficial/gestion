@@ -87,6 +87,13 @@
        </div>
     </div>
 
+     <div class="form-group">
+     <label class="col-md-3 control-label" for="example-email-input">Fecha Presentación</label>
+       <div class="col-md-9 date" id="datetimepicker7">
+        {{Form::text('fecha', Request::get('utm_fecha'), array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
+       </div>
+    </div>
+
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Asunto</label>
        <div class="col-md-9">
@@ -95,11 +102,13 @@
     </div>
 
     <div class="form-group">
-     <label class="col-md-3 control-label" for="example-email-input">Fecha Presentación</label>
-       <div class="col-md-9 date" id="datetimepicker7">
-        {{Form::text('fecha', Request::get('utm_fecha'), array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
-       </div>
-    </div>
+     <label class="col-md-3 control-label" for="example-text-input">Presentación</label>
+      <div class="col-md-9">
+       {{Form::textarea('presentacion', '', array('class' => 'ckeditor','id' => 'editor1','placeholder'=>'Ingrese contenido'))}}
+      </div>
+     </div>
+
+   
 <!--
 
     <div class="form-group">
@@ -118,7 +127,7 @@
 
 
     <div class="form-group">
-     <label class="col-md-3 control-label" for="example-text-input">Comentarios</label>
+     <label class="col-md-3 control-label" for="example-text-input">Términos y Condiciones</label>
       <div class="col-md-9">
        {{Form::textarea('comentarios', '', array('class' => 'ckeditor','id' => 'editor','placeholder'=>'Ingrese contenido'))}}
       </div>
@@ -236,6 +245,7 @@ $(".chosen-select").chosen();
 
 <script>
   CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+  CKEDITOR.replace( 'editor1', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 </script>
 @stop
 
