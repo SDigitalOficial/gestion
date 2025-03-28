@@ -101,11 +101,7 @@
    <td>{{$usuariosa->email}}</td>
      
        <td>
-        @foreach($interes as $interesa)
-        @if($usuariosa->interes == $interesa->id)
-        {{$interesa->page}}
-        @endif
-        @endforeach
+        {{$usuariosa->valor}}
     </td>
 
       
