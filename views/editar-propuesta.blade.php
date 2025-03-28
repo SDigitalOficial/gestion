@@ -91,7 +91,7 @@
    <div class="form-group">
      <label class="col-md-3 control-label" for="example-email-input">Fecha Presentación</label>
        <div class="col-md-9 date" id="datetimepicker7">
-        {{Form::text('fecha',$propuesta->fecha_presentacion, array('class' => 'form-control','readonly' => 'readonly','placeholder'=>'Ingrese fecha presentación'))}}
+        {{Form::text('fecha',$propuesta->fecha_presentacion, array('class' => 'form-control','placeholder'=>'Ingrese fecha presentación'))}}
        </div>
     </div>
 
@@ -105,7 +105,7 @@
     <div class="form-group">
      <label class="col-md-3 control-label" for="example-text-input">Presentación</label>
       <div class="col-md-9">
-       {{Form::textarea('presentacion', '', array('class' => 'ckeditor','id' => 'editor1','placeholder'=>'Ingrese contenido'))}}
+       {{Form::textarea('presentacion', $propuesta->presentacion, array('class' => 'ckeditor','id' => 'editor1','placeholder'=>'Ingrese contenido'))}}
       </div>
      </div>
 

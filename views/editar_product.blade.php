@@ -78,7 +78,7 @@
                                     <!-- Normal Form Content -->
                                      {{ Form::open(array('method' => 'POST','class' => 'form-horizontal','id' => 'defaultForm', 'url' => array('productos/updatepro',$productos->id))) }}
                 
-                                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Producto</label>
@@ -87,7 +87,16 @@
                                         </div>
                                        </div>
 
-                                       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                             <label class="control-label" for="example-email-input">Cantidad</label>
+                                           {{Form::text('cantidad', $productos->posti, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto' ))}}
+                                          </div>
+                                        </div>
+                                       </div>
+
+                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Precio</label>
@@ -96,7 +105,7 @@
                                         </div>
                                        </div>
 
-                                       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div class="form-group">
                                           <div class="col-md-12">
                                              <label class="control-label" for="example-email-input">Iva</label>
@@ -105,14 +114,20 @@
                                         </div>
                                        </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                                        <div class="form-group">
+                                        
+
+                                       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                          <div class="form-group">
                                           <div class="col-md-12">
-                                             <label class="control-label" for="example-email-input">Cantidad</label>
-                                           {{Form::text('cantidad', $productos->posti, array('class' => 'form-control','placeholder'=>'Ingrese nombre producto' ))}}
+                                             <label class="control-label" for="example-email-input">Moneda</label>
+                                            {{ Form::select('moneda', [
+                                             $productos->moneda => $productos->moneda,
+                                             '1' => 'COP',
+                                             '2' => 'USD'], null, array('class' => 'form-control')) }}
                                           </div>
                                         </div>
-                                       </div>
+                                      </div>
+
                                        {{Form::hidden('identificador',  $productos->identificador, array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
 
                                         {{Form::hidden('propuesta_id',  $productos->propuesta_id, array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}

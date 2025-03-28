@@ -323,6 +323,7 @@ public function crearreferido() {
   $gestion->producto = Input::get('producto');
   $gestion->descripcion = Input::get('descripcion');
   $gestion->propuesta_id = Input::get('propuesta');
+  $gestion->moneda = Input::get('moneda');
   $gestion->valor_subtotal = $gestion->posti*$gestion->precio;
   $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
   $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
@@ -344,6 +345,7 @@ public function crearreferido() {
   $gestion->producto = Input::get('producto');
   $gestion->descripcion = Input::get('descripcion');
   $gestion->propuesta_id = Input::get('propuesta_id');
+  $gestion->moneda = Input::get('moneda');
   $gestion->valor_subtotal = $gestion->posti*$gestion->precio;
   $gestion->valor_iva = $gestion->valor_subtotal*$gestion->iva /100;
   $gestion->valor_total = $gestion->valor_subtotal+$gestion->valor_iva;
@@ -427,16 +429,29 @@ $total_propuestas = \DigitalsiteSaaS\Gestion\Tenant\Product::all()
 
 $total_proceso = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
 ->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
-->where('estado_propuesta','=','1')->sum('precio');
+->where('estado_propuesta','=','1')->where('moneda','=','1')->sum('precio');
 
 $total_perdidas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
 ->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
-->where('estado_propuesta','=','2')->sum('precio');
+->where('estado_propuesta','=','2')->where('moneda','=','1')->sum('precio');
 
 
 $total_ganadas = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
 ->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
-->where('estado_propuesta','=','3')->sum('precio');
+->where('estado_propuesta','=','3')->where('moneda','=','1')->sum('precio');
+
+$total_procesousd = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','1')->where('moneda','=','2')->sum('precio');
+
+$total_perdidasusd = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','2')->where('moneda','=','2')->sum('precio');
+
+
+$total_ganadasusd = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_presentacion', array($datoa, $datob))
+->leftjoin('gestion_products','gestion_propuestas.id','=','gestion_products.propuesta_id')
+->where('estado_propuesta','=','3')->where('moneda','=','2')->sum('precio');
 
 $estado_usuario = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))
 ->leftjoin('gestion_funel','gestion_usuarios.tipo','=','gestion_funel.id')
@@ -483,6 +498,7 @@ $ciudades = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array
 ->orderBy('ciudad_sum', 'desc')
 ->get();
 
+
 $meses_lead = \DigitalsiteSaaS\Gestion\Tenant\Gestion::whereBetween('fecha', array($datoa, $datob))
 ->groupBy('mes')
 ->count();
@@ -501,7 +517,7 @@ $medios = \DigitalsiteSaaS\Gestion\Tenant\Propuesta::whereBetween('fecha_present
   ->get();
 
 
-return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with('total_perdidas', $total_perdidas)->with('estado_usuario', $estado_usuario)->with('productos', $productos)->with('referidos', $referidos)->with('ciudades', $ciudades)->with('total_propuestas', $total_propuestas)->with('total_proceso', $total_proceso)->with('total_ganadas', $total_ganadas)->with('cantidades', $cantidades)->with('medios', $medios)->with('sectores', $sectores);
+return view('gestion::dashboard')->with('total_usuarios', $total_usuarios)->with('total_perdidas', $total_perdidas)->with('estado_usuario', $estado_usuario)->with('productos', $productos)->with('referidos', $referidos)->with('ciudades', $ciudades)->with('total_propuestas', $total_propuestas)->with('total_proceso', $total_proceso)->with('total_ganadas', $total_ganadas)->with('cantidades', $cantidades)->with('medios', $medios)->with('sectores', $sectores)->with('total_perdidasusd', $total_perdidasusd)->with('total_procesousd', $total_procesousd)->with('total_ganadasusd', $total_ganadasusd);
  }
 
  public function registro(){
@@ -664,7 +680,7 @@ public function crearpropuesta($id){
   $gestion->gestion_usuario_id = Input::get('cliente');
   $gestion->motivo_id = Input::get('motivos');
   $gestion->save();
-  return Redirect('/gestion/comercial')->with('status', 'ok_create');
+  return Redirect('/gestion/comercial/propuesta/'.$gestion->gestion_usuario_id)->with('status', 'ok_create');
  }
 
  public function portafolio($id){

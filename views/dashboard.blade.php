@@ -201,6 +201,52 @@
                             </div>
 </div>
 
+
+<div class="container">
+
+<div class="col-md-12">
+                                <!-- Widget -->
+                                <div class="widget">
+                                    <div class="widget-extra text-center themed-background-dark">
+                                        <h3 class="widget-content-light"><i class="fa fa-arrow-up animation-floating"></i> Proyección <strong>Ventas</strong></h3>
+                                    </div>
+                                    <div class="widget-simple">
+                                        <div class="row text-center">
+                                           
+                                     
+                                            <div class="col-xs-4">
+                                                <a href="javascript:void(0)" class="widget-icon themed-background">
+                                                    <i class="gi gi-thumbs_up"></i>
+                                                </a>
+                                                <h3 class="remove-margin-bottom"><strong> {{$total_procesousd}} USD</strong><br><small>Propuestas en Proceso</small></h3>
+                                            </div>
+                                   
+                                            <div class="col-xs-4">
+                                                <a href="javascript:void(0)" class="widget-icon themed-background">
+                                                    <i class="gi gi-thumbs_up"></i>
+                                                </a>
+                                                <h3 class="remove-margin-bottom"><strong> {{$total_ganadasusd}} USD</strong><br><small>Propuestas Ganadas</small></h3>
+                                            </div>
+                                   
+                                            <div class="col-xs-4">
+                                                <a href="javascript:void(0)" class="widget-icon themed-background">
+                                                    <i class="gi gi-thumbs_up"></i>
+                                                </a>
+                                                <h3 class="remove-margin-bottom"><strong>
+                                                    
+                                                {{$total_perdidasusd}} USD</strong><br><small>Propuestas Perdidas</small></h3>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="widget-extra text-center themed-background-dark">
+                                        <h3 class="widget-content-light"><i class="fa fa-arrow-up animation-floating"></i> Total Propuestas Registradas<strong> {{number_format($total_propuestas, 0, ",", ".")}}</strong></h3>
+                                    </div>
+                                </div>
+                                <!-- END Widget -->
+                            </div>
+</div>
+
 <div class="container">
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
  <div class="block">
